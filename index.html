@@ -350,6 +350,7 @@ const SLIDES_WIDE = [
   ["0413","La Casa Films","Campaign BTS"],
 ];
 const SLIDES_TALL = [
+  ["dc26v","DC Shoes","Snow Tour · Chillán"],
   ["0085","Burton","Day One"],
   ["0442","DC Shoes","Snow Tour"],
   ["0071","SLASH · Gigi Rüf","La Parva"],
@@ -436,7 +437,7 @@ $("#prev").onclick=()=>show(cur-1); $("#next").onclick=()=>show(cur+1);
 $("#snd").onclick=e=>{ soundOn=!soundOn; const b=e.currentTarget; b.classList.toggle("on",soundOn); b.querySelector("b").textContent=soundOn?"on":"off"; vids[cur].muted=!soundOn; if(soundOn) vids[cur].play().catch(()=>{}); };
 new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting && soundOn) vids[cur].muted=true; else if(e.isIntersecting) vids[cur].muted=!soundOn; }),{threshold:.3}).observe($("#top"));
 $("#bar").onclick=e=>{const r=e.currentTarget.getBoundingClientRect(); const v=vids[cur]; if(v.duration) v.currentTime=(e.clientX-r.left)/r.width*v.duration;};
-$("#watch").onclick=()=>openFilm(SLIDES[cur][0]);
+$("#watch").onclick=()=>openFilm(SLIDES[cur][0].replace(/v$/,""));
 
 /* ---------- loader ---------- */
 let pct=0; const ld=$("#ld");
