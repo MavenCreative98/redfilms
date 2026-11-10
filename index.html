@@ -57,6 +57,9 @@ video{display:block}
 .arrows{display:flex;gap:8px}
 .arrows button{width:38px;height:38px;border-radius:50%;background:rgba(244,241,234,.16);backdrop-filter:blur(8px);display:grid;place-items:center;font-size:15px;transition:background .3s}
 .arrows button:hover{background:var(--accent)}
+.arrows .snd{width:auto;padding:0 14px;border-radius:999px;font-size:11px;gap:6px}
+.arrows .snd b{font-weight:500}
+.arrows .snd.on{background:var(--fg);color:#000}
 .prog{justify-self:center;width:min(280px,100%)}
 .prog .lbl{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;white-space:nowrap}
 .prog .lbl b{font-weight:500}
@@ -209,7 +212,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;paddin
   <div class="inner" id="heroIn"><div id="slides"></div></div>
   <h1 class="name serif"><span><i>Mati</i></span><span><i>Rojas</i></span></h1>
   <div class="hud">
-    <div class="arrows"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button></div>
+    <div class="arrows"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button><button id="snd" class="snd mono" aria-label="Sound">Sound <b>off</b></button></div>
     <div class="prog">
       <div class="lbl mono"><b id="cnt">01/05</b><span id="ttl"></span></div>
       <div class="bar" id="bar"><i id="fill"></i></div>
@@ -367,7 +370,7 @@ const watchV = v => vio.observe(v);
 
 /* ---------- hero slideshow ---------- */
 const SLIDES = isPhone ? SLIDES_TALL : SLIDES_WIDE;
-const slidesEl = $("#slides"); let cur = 0;
+const slidesEl = $("#slides"); let cur = 0, soundOn = false;
 SLIDES.forEach(([id],i)=>{
   const d=document.createElement("div"); d.className="slide"+(i===0?" on":"");
   d.innerHTML=`<video src="loop/${id}.mp4" poster="poster/${id}.jpg" muted playsinline preload="${i<2?'auto':'none'}"></video>`;
@@ -378,7 +381,7 @@ function show(n){
   const prev=cur; cur=(n+SLIDES.length)%SLIDES.length;
   if(prev!==cur){ slidesEl.children[prev].classList.remove("on"); vids[prev].pause(); }
   slidesEl.children[cur].classList.add("on");
-  const v=vids[cur]; v.currentTime=0; v.play().catch(()=>{});
+  const v=vids[cur]; v.muted=!soundOn; v.currentTime=0; v.play().catch(()=>{ v.muted=true; v.play().catch(()=>{}); });
   vids[(cur+1)%vids.length].preload="auto";
   $("#fill").style.width="0";
   $("#cnt").textContent=String(cur+1).padStart(2,"0")+"/"+String(SLIDES.length).padStart(2,"0");
@@ -390,6 +393,8 @@ vids.forEach((v,i)=>{
 });
 show(0);
 $("#prev").onclick=()=>show(cur-1); $("#next").onclick=()=>show(cur+1);
+$("#snd").onclick=e=>{ soundOn=!soundOn; const b=e.currentTarget; b.classList.toggle("on",soundOn); b.querySelector("b").textContent=soundOn?"on":"off"; vids[cur].muted=!soundOn; if(soundOn) vids[cur].play().catch(()=>{}); };
+new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting && soundOn) vids[cur].muted=true; else if(e.isIntersecting) vids[cur].muted=!soundOn; }),{threshold:.3}).observe($("#top"));
 $("#bar").onclick=e=>{const r=e.currentTarget.getBoundingClientRect(); const v=vids[cur]; if(v.duration) v.currentTime=(e.clientX-r.left)/r.width*v.duration;};
 $("#watch").onclick=()=>openFilm(SLIDES[cur][0]);
 
