@@ -1,0 +1,6 @@
+_frames/
+_encode.log
+_index_v*.html
+fuentes*.html
+.claude/
+.DS_Store
