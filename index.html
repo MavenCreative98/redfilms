@@ -91,7 +91,7 @@ video{display:block}
 .tile:hover span{opacity:1}
 
 /* follow cam feature */
-.fc{position:relative;height:320svh;margin-top:40px}
+.fc{position:relative;height:165svh;margin-top:40px}
 .fcpin{position:sticky;top:0;height:100svh;overflow:hidden;background:#000}
 .fcbg{position:absolute;inset:-40px;background:url(img/mati_followcam.jpg) center/cover;filter:blur(40px) brightness(.45) saturate(1.2);opacity:var(--bgo,0)}
 .fcstage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -256,7 +256,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;paddin
 <section class="statement">
   <span class="mono rv">( Redfilms — Since the first run )</span>
   <p class="serif" id="stmt">
-    I&nbsp;make&nbsp;films <span class="pill"><video data-src="mini/0034.mp4" muted loop playsinline></video></span> that&nbsp;move. Snowboard <span class="pill"><video data-src="mini/dc26.mp4" muted loop playsinline></video></span> in&nbsp;the&nbsp;Andes, brands <span class="pill"><video data-src="mini/0527.mp4" muted loop playsinline></video></span> and&nbsp;athletes, from&nbsp;the&nbsp;first&nbsp;idea to&nbsp;the&nbsp;final&nbsp;grade <span class="pill"><video data-src="mini/0109.mp4" muted loop playsinline></video></span>
+    I&nbsp;make&nbsp;films <span class="pill"><video data-src="mini/0034.mp4" muted loop playsinline></video></span> that&nbsp;move. Snow <span class="pill"><video data-src="mini/dc26.mp4" muted loop playsinline></video></span> in&nbsp;the&nbsp;Andes, surf <span class="pill"><video data-src="mini/n02.mp4" muted loop playsinline></video></span> in&nbsp;Hawaii, cars <span class="pill"><video data-src="mini/n20.mp4" muted loop playsinline></video></span>, fashion <span class="pill"><video data-src="mini/n29.mp4" muted loop playsinline></video></span> and&nbsp;wild&nbsp;Patagonia <span class="pill"><video data-src="mini/n43.mp4" muted loop playsinline></video></span>, from&nbsp;the&nbsp;first&nbsp;idea to&nbsp;the&nbsp;final&nbsp;grade <span class="pill"><video data-src="mini/n63.mp4" muted loop playsinline></video></span>
   </p>
 </section>
 
@@ -350,19 +350,23 @@ const CONTACT = {
 /* ===== HERO SLIDES (desktop = horizontal, phone = vertical) ===== */
 const SLIDES_WIDE = [
   ["dc26","DC Shoes","Snow Tour · Chillán"],
+  ["n20","Kia Chile","Tasman · Patagonia"],
+  ["n02","Big Wave Day","Surf · Hawaii"],
   ["0034","SLASH · Gigi Rüf","Heliski"],
-  ["0109","Perfect Sunset","Snow"],
-  ["0566","Own Light","Norway"],
-  ["0413","La Casa Films","Campaign BTS"],
+  ["n21","Paraíso Wild","Teaser"],
+  ["n29","Americanino","Amigos de Artistas"],
+  ["n63","FPV","Norway"],
 ];
 const SLIDES_TALL = [
   ["dc26v","DC Shoes","Snow Tour · Chillán"],
-  ["0085","Burton","Day One"],
-  ["0442","DC Shoes","Snow Tour"],
-  ["0071","SLASH · Gigi Rüf","La Parva"],
-  ["0492","Backcountry","Snow"],
-  ["0131","DC Shoes","Chillán"],
+  ["n18","Oakley","Studio"],
+  ["n05","Erin · Air","Surf · Hawaii"],
   ["f01","Americanino","Campaign"],
+  ["n54","New Balance","Night Run"],
+  ["0085","Burton","Day One"],
+  ["n43","Paraíso Wild","Culpeo"],
+  ["n22","Lunática × Americanino","Fashion"],
+  ["n14","Barrel","Surf · Hawaii"],
 ];
 
 /* ===== WORK: id, title, client, categories, year ===== */
@@ -470,6 +474,17 @@ const WORK = [
 ];
 
 const $ = s => document.querySelector(s);
+/* mix the grid: a bit of everything, never 5 of the same in a row */
+{
+  const TOP=["dc26","n20","0034","n02","f01","n21","0085","n18","n63","f02","n26","n29","0071","n05","n60","n22"];
+  const prim=w=>{const c=w[3].split(" "); for(const k of ["fpv","surf","nature","fashion","snow","brand","other"]) if(c.includes(k)) return k; return "other";};
+  const top=TOP.map(id=>WORK.find(w=>w[0]===id)).filter(Boolean);
+  const rest=WORK.filter(w=>!TOP.includes(w[0])), q={};
+  rest.forEach(w=>(q[prim(w)]=q[prim(w)]||[]).push(w));
+  const keys=["snow","brand","surf","fashion","nature","other","fpv"].filter(k=>q[k]);
+  const mixed=[]; while(keys.some(k=>q[k].length)) keys.forEach(k=>{ if(q[k].length) mixed.push(q[k].shift()); });
+  WORK.splice(0,WORK.length,...top,...mixed);
+}
 const MEDIA = {"n20": "https://mavencreative98.github.io/redfilms-media/", "n21": "https://mavencreative98.github.io/redfilms-media/", "n18": "https://mavencreative98.github.io/redfilms-media/", "n26": "https://mavencreative98.github.io/redfilms-media/", "n02": "https://mavencreative98.github.io/redfilms-media/", "n63": "https://mavencreative98.github.io/redfilms-media/", "n19": "https://mavencreative98.github.io/redfilms-media/", "n22": "https://mavencreative98.github.io/redfilms-media/", "n54": "https://mavencreative98.github.io/redfilms-media/", "n60": "https://mavencreative98.github.io/redfilms-media/", "n07": "https://mavencreative98.github.io/redfilms-media/", "n27": "https://mavencreative98.github.io/redfilms-media/", "n25": "https://mavencreative98.github.io/redfilms-media/", "n29": "https://mavencreative98.github.io/redfilms-media/", "n09": "https://mavencreative98.github.io/redfilms-media/", "n03": "https://mavencreative98.github.io/redfilms-media/", "n37": "https://mavencreative98.github.io/redfilms-media/", "n58": "https://mavencreative98.github.io/redfilms-media/", "n23": "https://mavencreative98.github.io/redfilms-media/", "n28": "https://mavencreative98.github.io/redfilms-media/", "n30": "https://mavencreative98.github.io/redfilms-media/", "n39": "https://mavencreative98.github.io/redfilms-media/", "n50": "https://mavencreative98.github.io/redfilms-media/", "n47": "https://mavencreative98.github.io/redfilms-media/", "n49": "https://mavencreative98.github.io/redfilms-media/", "n45": "https://mavencreative98.github.io/redfilms-media/", "n04": "https://mavencreative98.github.io/redfilms-media/", "n05": "https://mavencreative98.github.io/redfilms-media/", "n34": "https://mavencreative98.github.io/redfilms-media/", "n14": "https://mavencreative98.github.io/redfilms-media/", "n00": "https://mavencreative98.github.io/redfilms-media/", "n01": "https://mavencreative98.github.io/redfilms-media/", "n16": "https://mavencreative98.github.io/redfilms-media/", "n56": "https://mavencreative98.github.io/redfilms-media/", "n64": "https://mavencreative98.github.io/redfilms-media/", "n65": "https://mavencreative98.github.io/redfilms-media/", "n43": "https://mavencreative98.github.io/redfilms-media/", "n46": "https://mavencreative98.github.io/redfilms-media/", "n57": "https://mavencreative98.github.io/redfilms-media/", "n52": "https://mavencreative98.github.io/redfilms-media/", "n55": "https://mavencreative98.github.io/redfilms-media/", "n59": "https://mavencreative98.github.io/redfilms-media/", "n33": "https://mavencreative98.github.io/redfilms-media/", "n36": "https://mavencreative98.github.io/redfilms-media/", "n35": "https://mavencreative98.github.io/redfilms-media/", "n32": "https://mavencreative98.github.io/redfilms-media/", "n08": "https://mavencreative98.github.io/redfilms-media/", "n44": "https://mavencreative98.github.io/redfilms-media/", "n41": "https://mavencreative98.github.io/redfilms-media/", "n51": "https://mavencreative98.github.io/redfilms-media/", "n53": "https://mavencreative98.github.io/redfilms-media/", "n40": "https://mavencreative98.github.io/redfilms-media/", "n10": "https://mavencreative98.github.io/redfilms-media/", "n15": "https://mavencreative98.github.io/redfilms-media/"}; /*MEDIA*/
 const VSRC = id => (MEDIA[id]||"video/")+id+".mp4";
 const byId = Object.fromEntries(WORK.map(w=>[w[0],w]));
