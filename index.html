@@ -311,7 +311,10 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;paddin
       <button data-f="snow">[ ] Snowboard</button>
       <button data-f="brand">[ ] Brands</button>
       <button data-f="fashion">[ ] Fashion</button>
-      <button data-f="other">[ ] Surf, bike &amp; BTS</button>
+      <button data-f="surf">[ ] Surf</button>
+      <button data-f="nature">[ ] Nature &amp; docs</button>
+      <button data-f="fpv">[ ] FPV</button>
+      <button data-f="other">[ ] Bike, skate &amp; BTS</button>
     </div>
   </div>
   <div id="rows"></div>
@@ -375,6 +378,73 @@ const WORK = [
   ["f01","Americanino × Amigo de Artistas","Americanino · Campaign","fashion brand","2026"],
   ["f02","Runway · Americanino","Falabella × Americanino","fashion brand","2026"],
   ["f03","Backstage","Falabella","fashion brand","2026"],
+  /*NEW*/
+  ["n20","Kia Tasman · Patagonia","Kia Chile","brand","2026"],
+  ["n21","Paraíso Wild · Teaser","Paraíso Wild","nature","2026"],
+  ["n18","Oakley Studio","Oakley","brand","2026"],
+  ["n26","Andes Cup × Oakley","Oakley","snow brand","2025"],
+  ["n02","Big Wave Day","Surf · Hawaii","surf","2026"],
+  ["n63","FPV · Arctic Ridge","FPV · Norway","fpv snow","2024"],
+  ["n19","Kia Tasman","Kia Chile","brand","2026"],
+  ["n22","Lunática × Americanino","Americanino","fashion brand","2026"],
+  ["n54","New Balance · Night Run","New Balance","brand","2026"],
+  ["n60","Paraíso Wild · Trailer","Tierra del Fuego","nature","2026"],
+  ["n07","Magic · Heliski","Chile","snow","2025"],
+  ["n27","DC Snow Tour · Official","DC Shoes","snow brand","2025"],
+  ["n25","Desafío Chile","by La Vuelta","brand other","2026"],
+  ["n29","Amigos de Artistas · Night","Americanino","fashion brand","2026"],
+  ["n09","HH · Lookbook","Hood Hype","fashion brand","2026"],
+  ["n03","Inside the Barrel","Surf · Hawaii","surf","2026"],
+  ["n37","Momento Mágico","Paraíso Wild","nature","2026"],
+  ["n58","Kuhane · Official Trailer","Surf film","surf nature","2026"],
+  ["n23","Kia Tasman · Snow & River","Kia Chile","brand","2026"],
+  ["n28","Kia Tasman · Dust","Kia Chile","brand","2026"],
+  ["n30","Kia Tasman · Andes","Kia Chile","brand","2026"],
+  ["n39","Burton · Kicker","Burton","snow brand","2026"],
+  ["n50","Burton · Park","Burton","snow brand","2026"],
+  ["n47","Powder Slash","Chile","snow","2026"],
+  ["n49","Spiro","Chile","snow","2026"],
+  ["n45","Park Day","Chile","snow","2026"],
+  ["n04","Humpbacks","Hawaii","nature surf","2026"],
+  ["n05","Erin · Air","Surf · Hawaii","surf","2026"],
+  ["n34","The Drop","Surf · Hawaii","surf","2025"],
+  ["n14","Barrel","Surf · Hawaii","surf","2026"],
+  ["n00","North Shore Session","Surf · Hawaii","surf","2025"],
+  ["n01","Hawaiian Sunset","Hawaii","surf","2026"],
+  ["n16","Golden Hour · Hawaii","Hawaii","surf","2026"],
+  ["n56","Kuhane","Surf film","surf","2026"],
+  ["n64","FPV · Arctic Peaks","FPV · Norway","fpv snow","2024"],
+  ["n65","FPV · Arctic Coast","FPV · Norway","fpv","2024"],
+  ["n43","Culpeo","Paraíso Wild","nature","2026"],
+  ["n46","Patagonia","Paraíso Wild","nature","2026"],
+  ["n57","Paraíso Wild · Patagonia","Paraíso Wild","nature","2026"],
+  ["n52","Nomads of the Sea","Documentary","nature","2025"],
+  ["n55","Solo Expediciones","Tourism","nature brand","2026"],
+  ["n59","Aconcagua","Ski trip","snow","2026"],
+  ["n33","Fog","Chile","nature","2024"],
+  ["n36","Stillwater","Chile","nature","2024"],
+  ["n35","Hood Hype","Hood Hype","fashion brand","2026"],
+  ["n32","Knockout","Hood Hype","fashion brand","2026"],
+  ["n08","Fisheye Street","Street","fashion","2025"],
+  ["n44","Sofi","Lifestyle","fashion","2026"],
+  ["n41","Kaiak · Historia III","Natura Kaiak","brand","2026"],
+  ["n51","Kaiak · Historia II","Natura Kaiak","brand","2026"],
+  ["n53","Kaiak · Historia I","Natura Kaiak","brand","2026"],
+  ["n40","Historia","Art film","other","2026"],
+  ["n31","Euforia","Skate contest","other","2026"],
+  ["n42","Contest Day","Skate","other","2026"],
+  ["n06","Downhill","Skate","other","2024"],
+  ["n10","Skate Session","Skate","other","2026"],
+  ["n15","Bike Air","Bike","other","2024"],
+  ["n48","Road","Cycling","other","2026"],
+  ["n12","Girls Trip","Lifestyle","other","2024"],
+  ["n13","Summer Days","Lifestyle","other","2024"],
+  ["n17","Trail","Lifestyle","other","2025"],
+  ["n11","La Casa Films · Vertical","La Casa Films","snow brand other","2025"],
+  ["n61","Atacama · Behind the Scenes","BTS","other","2025"],
+  ["n62","Huilo Huilo · Behind the Scenes","Kaivision","other","2026"],
+  ["n67","Backstage × Americanino","Falabella","fashion other","2026"],
+  /*ENDNEW*/
   ["0109","Perfect Sunset","Chile","snow","2026"],
   ["0442","DC Snow Tour · Chillán","DC Shoes","snow brand","2025"],
   ["0464","Burton Day One","Burton · Chile","snow brand","2025"],
@@ -394,12 +464,14 @@ const WORK = [
   ["0407","Snow Campaign · BTS","La Casa Films","other brand","2025"],
   ["0413","Snow Campaign · Behind the Scenes","La Casa Films","other brand","2025"],
   ["0527","Bixs × matiredfilms","Bixs","other brand","2025"],
-  ["0402","Mike","Surf · Hawaii","other","2025"],
-  ["0403","Rocky Point · Teaser","Surf · Hawaii","other","2025"],
-  ["0401","North Shore","Surf · Hawaii","other","2025"],
+  ["0402","Mike","Surf · Hawaii","surf","2025"],
+  ["0403","Rocky Point · Teaser","Surf · Hawaii","surf","2025"],
+  ["0401","North Shore","Surf · Hawaii","surf","2025"],
 ];
 
 const $ = s => document.querySelector(s);
+const MEDIA = {"n20": "https://mavencreative98.github.io/redfilms-media/", "n21": "https://mavencreative98.github.io/redfilms-media/", "n18": "https://mavencreative98.github.io/redfilms-media/", "n26": "https://mavencreative98.github.io/redfilms-media/", "n02": "https://mavencreative98.github.io/redfilms-media/", "n63": "https://mavencreative98.github.io/redfilms-media/", "n19": "https://mavencreative98.github.io/redfilms-media/", "n22": "https://mavencreative98.github.io/redfilms-media/", "n54": "https://mavencreative98.github.io/redfilms-media/", "n60": "https://mavencreative98.github.io/redfilms-media/", "n07": "https://mavencreative98.github.io/redfilms-media/", "n27": "https://mavencreative98.github.io/redfilms-media/", "n25": "https://mavencreative98.github.io/redfilms-media/", "n29": "https://mavencreative98.github.io/redfilms-media/", "n09": "https://mavencreative98.github.io/redfilms-media/", "n03": "https://mavencreative98.github.io/redfilms-media/", "n37": "https://mavencreative98.github.io/redfilms-media/", "n58": "https://mavencreative98.github.io/redfilms-media/", "n23": "https://mavencreative98.github.io/redfilms-media/", "n28": "https://mavencreative98.github.io/redfilms-media/", "n30": "https://mavencreative98.github.io/redfilms-media/", "n39": "https://mavencreative98.github.io/redfilms-media/", "n50": "https://mavencreative98.github.io/redfilms-media/", "n47": "https://mavencreative98.github.io/redfilms-media/", "n49": "https://mavencreative98.github.io/redfilms-media/", "n45": "https://mavencreative98.github.io/redfilms-media/", "n04": "https://mavencreative98.github.io/redfilms-media/", "n05": "https://mavencreative98.github.io/redfilms-media/", "n34": "https://mavencreative98.github.io/redfilms-media/", "n14": "https://mavencreative98.github.io/redfilms-media/", "n00": "https://mavencreative98.github.io/redfilms-media/", "n01": "https://mavencreative98.github.io/redfilms-media/", "n16": "https://mavencreative98.github.io/redfilms-media/", "n56": "https://mavencreative98.github.io/redfilms-media/", "n64": "https://mavencreative98.github.io/redfilms-media/", "n65": "https://mavencreative98.github.io/redfilms-media/", "n43": "https://mavencreative98.github.io/redfilms-media/", "n46": "https://mavencreative98.github.io/redfilms-media/", "n57": "https://mavencreative98.github.io/redfilms-media/", "n52": "https://mavencreative98.github.io/redfilms-media/", "n55": "https://mavencreative98.github.io/redfilms-media/", "n59": "https://mavencreative98.github.io/redfilms-media/", "n33": "https://mavencreative98.github.io/redfilms-media/", "n36": "https://mavencreative98.github.io/redfilms-media/", "n35": "https://mavencreative98.github.io/redfilms-media/", "n32": "https://mavencreative98.github.io/redfilms-media/", "n08": "https://mavencreative98.github.io/redfilms-media/", "n44": "https://mavencreative98.github.io/redfilms-media/", "n41": "https://mavencreative98.github.io/redfilms-media/", "n51": "https://mavencreative98.github.io/redfilms-media/", "n53": "https://mavencreative98.github.io/redfilms-media/", "n40": "https://mavencreative98.github.io/redfilms-media/", "n10": "https://mavencreative98.github.io/redfilms-media/", "n15": "https://mavencreative98.github.io/redfilms-media/"}; /*MEDIA*/
+const VSRC = id => (MEDIA[id]||"video/")+id+".mp4";
 const byId = Object.fromEntries(WORK.map(w=>[w[0],w]));
 const isPhone = matchMedia("(max-width:820px)").matches;
 const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -468,7 +540,7 @@ fillTrack($("#mq3"), ALL.filter((_,i)=>i%3===2));
 const tracks=[...document.querySelectorAll(".track")].map(el=>({el,x:0,speed:parseFloat(el.dataset.speed)}));
 
 /* ---------- work: justified video grid ---------- */
-const AR={"0029":16/9,"0034":16/9,"0067":9/16,"0070":9/16,"0071":9/16,"0085":9/16,"0109":16/9,"0131":4/5,"0401":4/3,"0402":9/16,"0403":9/16,"0407":4/5,"0413":16/9,"0423":9/16,"0424":9/16,"0431":9/16,"0441":9/16,"0442":9/16,"0448":9/16,"0455":9/16,"0456":9/16,"0464":9/16,"0483":9/16,"0489":16/9,"0492":9/16,"0497":9/16,"0498":16/9,"0527":16/9,"0566":16/9,"dc26":16/9,"f01":9/16,"f02":9/16,"f03":9/16};
+const AR={"0029":16/9,"0034":16/9,"0067":9/16,"0070":9/16,"0071":9/16,"0085":9/16,"0109":16/9,"0131":4/5,"0401":4/3,"0402":9/16,"0403":9/16,"0407":4/5,"0413":16/9,"0423":9/16,"0424":9/16,"0431":9/16,"0441":9/16,"0442":9/16,"0448":9/16,"0455":9/16,"0456":9/16,"0464":9/16,"0483":9/16,"0489":16/9,"0492":9/16,"0497":9/16,"0498":16/9,"0527":16/9,"0566":16/9,"dc26":16/9,"f01":9/16,"f02":9/16,"f03":9/16,"n20":1.7778,"n21":1.7778,"n18":0.5625,"n26":0.5625,"n02":1.7778,"n63":1.7778,"n19":1.7778,"n22":0.5625,"n54":0.5625,"n60":1.7778,"n07":0.5625,"n27":0.5625,"n25":1.7778,"n29":1.7778,"n09":0.5625,"n03":0.5625,"n37":1.7778,"n58":1.7778,"n23":1.7778,"n28":1.7778,"n30":1.7778,"n39":0.8,"n50":0.8,"n47":0.8,"n49":0.5625,"n45":0.5625,"n04":1.7778,"n05":0.5625,"n34":0.5625,"n14":0.5625,"n00":1.7778,"n01":0.5625,"n16":0.5625,"n56":0.5625,"n64":1.7778,"n65":1.7778,"n43":0.5625,"n46":0.8,"n57":1.7778,"n52":1.7778,"n55":1.7778,"n59":1.7778,"n33":1.7778,"n36":0.5625,"n35":0.5625,"n32":0.5625,"n08":0.5625,"n44":0.5625,"n41":0.5625,"n51":0.5625,"n53":0.5625,"n40":0.5625,"n31":0.5625,"n42":0.5625,"n06":0.5625,"n10":0.5625,"n15":0.5625,"n48":1.7778,"n12":0.5625,"n13":0.5625,"n17":0.5625,"n11":0.5625,"n61":1.7778,"n62":0.5625,"n67":0.5625};
 const grid=$("#rows"); grid.className="jgrid";
 const tiles=WORK.map(([id,t,c,cat,y],i)=>{
   const a=document.createElement("a"); a.className="tile2"+(i===0?" feat":""); a.dataset.cat=cat; a.dataset.play=id; a.href="#"; a.dataset.ar=AR[id]||16/9;
@@ -583,7 +655,7 @@ requestAnimationFrame(frame);
 
 /* ---------- lightbox ---------- */
 const lb=$("#lb"), lbv=$("#lbv");
-function openFilm(id){ const w=byId[id]; $("#lbt").textContent=w?`${w[1]} / ${w[2]}`:""; lbv.src=`video/${id}.mp4`; lb.classList.add("on"); vids[cur].pause(); lenis&&lenis.stop(); lbv.play().catch(()=>{}); }
+function openFilm(id){ const w=byId[id]; $("#lbt").textContent=w?`${w[1]} / ${w[2]}`:""; lbv.src=VSRC(id); lb.classList.add("on"); vids[cur].pause(); lenis&&lenis.stop(); lbv.play().catch(()=>{}); }
 function closeFilm(){ lbv.pause(); lbv.removeAttribute("src"); lbv.load(); lb.classList.remove("on"); lenis&&lenis.start(); vids[cur].play().catch(()=>{}); }
 document.addEventListener("click",e=>{ const p=e.target.closest(".tile2"); if(p){ e.preventDefault(); openFilm(p.dataset.play);} });
 $("#lbx").onclick=closeFilm; lb.addEventListener("click",e=>{ if(e.target===lb) closeFilm(); });
